@@ -10,8 +10,8 @@ obj/
 ### MacOS ###
 .DS_Store
 
-### Other libs ###
-wwwroot/lib/
+### Other files ###
+lib
 
 ### Rider ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
