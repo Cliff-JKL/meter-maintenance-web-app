@@ -1,0 +1,11 @@
+@model IEnumerable<Meter>
+
+<div>
+    <p>Счетчики, требующие проверки</p>
+    <ul class="list-group">
+        @foreach (var meter in Model)
+        {
+            <li class="list-group-item">@meter.SerialNumber</li>
+        }
+    </ul>
+</div>

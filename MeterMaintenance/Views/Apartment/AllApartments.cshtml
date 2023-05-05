@@ -1,0 +1,22 @@
+@model IEnumerable<ApartmentWithActualReadingDTO>
+
+<div>
+    <p>Актуальные показания счетчиков на сегодня</p>
+    <table class="table">
+        <thead>
+        <tr>
+            <td>Адрес</td>
+            <td>Показания</td>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach (var apartment in Model)
+            {
+                <tr>
+                    <td>@apartment.Name</td>
+                    <td>@(apartment?.Reading?.ToString() ?? "-")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
