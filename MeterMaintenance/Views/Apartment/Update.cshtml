@@ -1,0 +1,31 @@
+@model Apartment
+
+<h2>Замена счетчика</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form action="/Apartment/Update/@Model.Id" method="post">
+            @* <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+            <div class="form-group">
+                <input name="Id" value="@Model.Id" hidden/>
+                <input name="Value" value="@Model.Name" hidden/>
+                <input name="ReadingDate" value="@Model.CurrentMeterId" hidden/>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Доступные счетчики</label>
+                <select name="CurrentMeterId" id="CurrentMeterId" class="form-control">
+                    @foreach (var meter in ViewData["Meters"] as IEnumerable<Meter>)
+                    {
+                        <option name="CurrentMeterId" value="@meter.Id">@meter.SerialNumber</option>
+                    }
+                </select>
+            </div>
+            <form action="/MeterReading/Update/@Model.Id" method="post">
+                <div class="form-group">
+                    <button class="btn btn-primary">Сохранить</button>
+                </div>
+            </form>
+        </form>
+    </div>
+</div>

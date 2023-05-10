@@ -1,22 +1,35 @@
 @model IEnumerable<ApartmentWithActualReadingDTO>
 
-<div>
-    <p>Актуальные показания счетчиков на сегодня</p>
-    <table class="table">
-        <thead>
+<h2>Актуальные показания счетчиков на сегодня</h2>
+<hr/>
+
+<table class="table">
+    <thead>
+    <tr>
+        <td>Адрес</td>
+        <td>Показания счетчика</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var apartment in Model)
+    {
         <tr>
-            <td>Адрес</td>
-            <td>Показания</td>
-        </tr>
-        </thead>
-        <tbody>
-            @foreach (var apartment in Model)
+            <td>@apartment.Name</td>
+            <td>@(apartment?.Reading?.ToString() ?? "-")</td>
+            @if (apartment?.ReadingId != null)
             {
-                <tr>
-                    <td>@apartment.Name</td>
-                    <td>@(apartment?.Reading?.ToString() ?? "-")</td>
-                </tr>
+                <td><a asp-controller="MeterReading" asp-action="Update" asp-route-id="@apartment.ReadingId">ввести показания</a></td>
             }
-        </tbody>
-    </table>
-</div>
+            else
+            {
+                <td></td>
+            }
+            <td><a asp-controller="Apartment" asp-action="Update" asp-route-id="@apartment.ApartmentId">заменить счетчик</a></td>
+            <td><a asp-controller="MeterReplacementHistory" asp-action="Index" asp-route-id="@apartment.ApartmentId">история замен счетчиков</a></td>
+        </tr>
+    }
+    </tbody>
+</table>

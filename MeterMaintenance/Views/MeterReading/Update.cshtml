@@ -1,0 +1,27 @@
+@model MeterReading
+
+<h2>Показания счетчика</h2>
+<h4>Ввод</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form action="/MeterReading/Update/@Model.Id" method="post">
+            @* <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+            <div class="form-group">
+                <label class="control-label">Показания</label>
+                <input name="Value" value="@Model.Value" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <input name="ReadingDate" value="@Model.ReadingDate" hidden/>
+                <input name="Id" value="@Model.Id" hidden/>
+                <input name="MeterId" value="@Model.MeterId" hidden/>
+            </div>
+            <form action="/MeterReading/Update/@Model.Id" method="post">
+                <div class="form-group">
+                    <button class="btn btn-primary">Сохранить</button>
+                </div>
+            </form>
+        </form>
+    </div>
+</div>

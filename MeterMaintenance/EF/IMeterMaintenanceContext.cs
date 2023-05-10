@@ -12,6 +12,8 @@ public interface IMeterMaintenanceContext
     
     public DbSet<Meter> Meter { get; set; }
     public DbSet<Apartment> Apartment { get; set; }
+    public DbSet<MeterReading> MeterReading { get; set; }
+    public DbSet<MeterReplacementHistory> MeterReplacementHistories { get; set; }
 
     int SaveChanges();
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);

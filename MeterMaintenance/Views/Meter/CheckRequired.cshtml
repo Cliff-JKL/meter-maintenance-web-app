@@ -1,11 +1,24 @@
 @model IEnumerable<Meter>
 
-<div>
-    <p>Счетчики, требующие проверки</p>
-    <ul class="list-group">
-        @foreach (var meter in Model)
-        {
-            <li class="list-group-item">@meter.SerialNumber</li>
-        }
-    </ul>
-</div>
+<h2>Счетчики, требующие проверки</h2>
+<hr/>
+
+<table class="table">
+    <thead>
+    <tr>
+        <td>Квартира</td>
+        <td>Номер счетчика</td>
+        <td>Дата следующей проверки</td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var meter in Model)
+    {
+        <tr>
+            <td>@meter.Apartment.Name.Split('/')[2]</td>
+            <td>@meter.SerialNumber</td>
+            <td>@meter.NextReadingDate.Value.ToString("dd-MM-yyyy")</td>
+        </tr>
+    }
+    </tbody>
+</table>

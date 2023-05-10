@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.ComponentModel.Design
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -20,13 +21,10 @@
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Apartment" asp-action="AllApartments">Квартиры</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Apartment" asp-action="AllApartments">Apartments</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Meter" asp-action="Index">Счетчики</a>
                     </li>
                 </ul>
             </div>

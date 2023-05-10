@@ -1,3 +1,5 @@
+using MeterMaintenance.Models.MeterMaintenanceService;
+using MeterMaintenance.Models.ViewModels;
 using MeterMaintenance.Services.MeterMaintenanceService;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,11 +14,43 @@ public class MeterController : Controller
         MeterMaintenanceService = meterMaintenanceService;
     }
     
-    [Route("Meter/CheckRequired/{street}/{house}")]
-    public async Task<IActionResult> CheckRequired(string street, string house)
+    public async Task<IActionResult> Index()
     {
-        var res = await MeterMaintenanceService.GetMetersRequiredToCheck($"{street}/{house}");
+        var apartments = await MeterMaintenanceService.GetAllApartmentsWithReadings();
+        var houses = apartments
+            .Select(a => a.Name[..a.Name.LastIndexOf('/')])
+            .Distinct();
+        
+        var res = new MeterIndex
+        {
+            Houses = houses,
+            Address = houses.First()
+        };
         
         return View(res);
+    }
+    
+    [Route("Meter/CheckRequired/{Address}")]
+    public async Task<IActionResult> CheckRequired(string Address)
+    {
+        var res = await MeterMaintenanceService.GetMetersRequiredToCheck(Address);
+        
+        return View(res);
+    }
+    
+    [HttpGet]
+    public async Task<IActionResult> Create()
+    {
+        var meter = new MeterDTO();
+
+        return View(meter);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create(MeterDTO meter)
+    {
+        await MeterMaintenanceService.CreateMeterAsync(meter);
+
+        return RedirectToAction("Index");
     }
 }

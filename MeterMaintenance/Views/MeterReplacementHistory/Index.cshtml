@@ -1,0 +1,24 @@
+@model IEnumerable<MeterReplacementHistory>
+
+<h2>История замен счетчиков</h2>
+<hr/>
+
+<table class="table">
+    <thead>
+    <tr>
+        <td>Дата установки</td>
+        <td>Показания заменяемого счетчика</td>
+        <td>Счетчик, на который изменен</td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var meterReplacementHistory in Model)
+    {
+        <tr>
+            <td>@meterReplacementHistory.CreationDate.ToString("dd-MM-yyyy")</td>
+            <td>@(meterReplacementHistory?.OldMeterReadingValue?.ToString() ?? "-")</td>
+            <td>@(meterReplacementHistory?.NewMeter?.SerialNumber ?? "-")</td>
+        </tr>
+    }
+    </tbody>
+</table>

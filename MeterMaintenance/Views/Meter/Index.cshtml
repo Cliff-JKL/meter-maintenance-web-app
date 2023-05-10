@@ -1,0 +1,30 @@
+@model MeterIndex
+
+<h2>Счетчики</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form action="/Meter/CheckRequired/@Model" method="post">
+            <div class="form-group">
+                <label class="control-label">Просмотр счетчиков, которым необходима проверка</label>
+                <select name="Address" id="Address" asp-for="@Model" class="form-control">
+                    @foreach (var house in Model.Houses)
+                    {
+                        <option name="Address" value="@house">@house</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <form action="/Meter/CheckRequired/{@Model.Address}" method="post">
+                    <button class="btn btn-primary">Проверить</button>
+                </form>
+            </div>
+        </form>
+    </div>
+</div>
+<hr />
+
+<p>
+    <a asp-controller="Meter" asp-action="Create">Создать новый</a>
+</p>
