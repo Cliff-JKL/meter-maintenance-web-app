@@ -62,7 +62,10 @@ public class MeterMaintenanceService : IMeterMaintenanceService
             switch (field)
             {
                 case nameof(MeterReadingDTO.Value):
-                    meterReading.Value = mutation.Entity.Value;
+                    if (meterReading.Value > meterReading.Value + mutation.Entity.Value)
+                        exceptions.Add(new Exception("Meter reading value cannot not decrease!"));
+                    else
+                        meterReading.Value += mutation.Entity.Value;
                     break;
                 case nameof(MeterReadingDTO.ReadingDate):
                     meterReading.ReadingDate = mutation.Entity.ReadingDate;

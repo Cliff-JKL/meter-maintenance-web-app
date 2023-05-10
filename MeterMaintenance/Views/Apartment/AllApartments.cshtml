@@ -27,7 +27,9 @@
             {
                 <td></td>
             }
-            <td><a asp-controller="Apartment" asp-action="Update" asp-route-id="@apartment.ApartmentId">заменить счетчик</a></td>
+            <td><a asp-controller="Apartment" asp-action="Update" asp-route-id="@apartment.ApartmentId">
+                @(apartment?.ReadingId != null ? "заменить счетчик" : "установить счетчик")
+                </a></td>
             <td><a asp-controller="MeterReplacementHistory" asp-action="Index" asp-route-id="@apartment.ApartmentId">история замен счетчиков</a></td>
         </tr>
     }

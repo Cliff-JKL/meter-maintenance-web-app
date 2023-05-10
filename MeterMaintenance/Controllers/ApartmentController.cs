@@ -16,7 +16,7 @@ public class ApartmentController : Controller
     
     public async Task<IActionResult> AllApartments()
     {
-        var res = await MeterMaintenanceService.GetAllApartmentsWithReadings();
+        var res = await MeterMaintenanceService.GetAllApartmentsWithReadingsAsync();
         
         return View(res);
     }
@@ -25,7 +25,7 @@ public class ApartmentController : Controller
     [Route("Apartment/Update/{id:int}")]
     public async Task<IActionResult> Update(int id)
     {
-        var meters = await MeterMaintenanceService.GetNonReservedMeters();
+        var meters = await MeterMaintenanceService.GetNonReservedMetersAsync();
         var apartment = await MeterMaintenanceService.GetApartmentAsync(id);
         ViewData["Meters"] = meters;
         
@@ -41,7 +41,7 @@ public class ApartmentController : Controller
             CurrentMeterId = apartment.CurrentMeterId,
         };
         
-        await MeterMaintenanceService.UpdateApartmentMeter(id, apartmentDto);
+        await MeterMaintenanceService.UpdateApartmentMeterAsync(id, apartmentDto);
 
         return RedirectToAction("AllApartments", "Apartment");
     }

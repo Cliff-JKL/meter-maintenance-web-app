@@ -125,7 +125,19 @@ public class MeterMaintenanceContext : DbContext, IMeterMaintenanceContext
             new
             {
                 Id = 4,
-                SerialNumber = "jkl123-2022",
+                SerialNumber = "jkl123-2023",
+                LastReadingDate = new DateTime(2023, 4, 11),
+                NextReadingDate = new DateTime(2023, 5, 11),
+            },
+            new
+            {
+                Id = 5,
+                SerialNumber = "mno456-2023",
+            },
+            new
+            {
+                Id = 6,
+                SerialNumber = "pqr-789-2023",
             }
         );
 
@@ -147,9 +159,16 @@ public class MeterMaintenanceContext : DbContext, IMeterMaintenanceContext
             new
             {
                 Id = 3,
+                Value = 256.64,
+                ReadingDate = new DateTime(2023, 4, 11),
+                MeterId = 3,
+            },
+            new
+            {
+                Id = 4,
                 Value = 32470.34,
                 ReadingDate = new DateTime(2023, 4, 1),
-                MeterId = 3,
+                MeterId = 4,
             }
         );
 
@@ -157,30 +176,41 @@ public class MeterMaintenanceContext : DbContext, IMeterMaintenanceContext
             new
             {
                 Id = 1,
-                Name = "Parkovy/2/15",
+                Name = "Парковый_пр-кт/2/15",
                 CurrentMeterId = 1,
             },
             new
             {
                 Id = 2,
-                Name = "Lenina/22/4",
+                Name = "Парковый_пр-кт/2/11",
             },
             new
             {
                 Id = 3,
-                Name = "Lenina/22/20",
-                CurrentMeterId = 2,
+                Name = "Ленина/22/4",
             },
             new
             {
                 Id = 4,
-                Name = "Lenina/22/9",
-                CurrentMeterId = 3,
+                Name = "Ленина/22/20",
+                CurrentMeterId = 2,
             },
             new
             {
                 Id = 5,
-                Name = "Lenina/10/21",
+                Name = "Ленина/22/9",
+                CurrentMeterId = 3,
+            },
+            new
+            {
+                Id = 6,
+                Name = "Ленина/10/21",
+            },
+            new
+            {
+                Id = 7,
+                Name = "Комсомольский_пр-кт/53/1",
+                CurrentMeterId = 4,
             }
         );
     }
