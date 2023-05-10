@@ -16,7 +16,7 @@ public class MeterMaintenanceService : IMeterMaintenanceService
     }
     
     // TODO add filters ?
-    public async Task<List<ApartmentWithActualReadingDTO>> GetAllApartmentsWithReadings()
+    public async Task<List<ApartmentWithActualReadingDTO>> GetAllApartmentsWithReadingsAsync()
     {
         var res = await Context.Apartment.AsNoTracking()
             .Select(x => new ApartmentWithActualReadingDTO
@@ -31,7 +31,7 @@ public class MeterMaintenanceService : IMeterMaintenanceService
         return res;
     }
 
-    public async Task<List<Meter>> GetMetersRequiredToCheck(string address)
+    public async Task<List<Meter>> GetMetersRequiredToCheckAsync(string address)
     {
         var res = await Context.Meter
             .Where(m => m.Apartment.Name.Contains(address))
@@ -43,7 +43,7 @@ public class MeterMaintenanceService : IMeterMaintenanceService
         return res;
     }
 
-    public async Task<MeterReading> UpdateMeterReading(int id, Mutation<MeterReadingDTO> mutation)
+    public async Task<MeterReading> UpdateMeterReadingAsync(int id, Mutation<MeterReadingDTO> mutation)
     {
         var meterReading = await Context.MeterReading
             .AsNoTracking()
@@ -109,7 +109,7 @@ public class MeterMaintenanceService : IMeterMaintenanceService
         return meterReading;
     }
 
-    public async Task<List<Meter>> GetNonReservedMeters()
+    public async Task<List<Meter>> GetNonReservedMetersAsync()
     {
         var meters = await Context.Meter
             .AsNoTracking()
@@ -136,7 +136,7 @@ public class MeterMaintenanceService : IMeterMaintenanceService
         return apartment;
     }
     
-    public async Task<Apartment> UpdateApartmentMeter(int id, ApartmentDTO apartmentDto)
+    public async Task<Apartment> UpdateApartmentMeterAsync(int id, ApartmentDTO apartmentDto)
     {
         var meterId = apartmentDto.CurrentMeterId ?? -1;
         if (meterId == -1)

@@ -16,7 +16,7 @@ public class MeterController : Controller
     
     public async Task<IActionResult> Index()
     {
-        var apartments = await MeterMaintenanceService.GetAllApartmentsWithReadings();
+        var apartments = await MeterMaintenanceService.GetAllApartmentsWithReadingsAsync();
         var houses = apartments
             .Select(a => a.Name[..a.Name.LastIndexOf('/')])
             .Distinct();
@@ -33,7 +33,7 @@ public class MeterController : Controller
     [Route("Meter/CheckRequired/{Address}")]
     public async Task<IActionResult> CheckRequired(string Address)
     {
-        var res = await MeterMaintenanceService.GetMetersRequiredToCheck(Address);
+        var res = await MeterMaintenanceService.GetMetersRequiredToCheckAsync(Address);
         
         return View(res);
     }

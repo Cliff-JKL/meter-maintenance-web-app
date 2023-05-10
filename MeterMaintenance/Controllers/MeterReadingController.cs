@@ -35,7 +35,7 @@ public class MeterReadingController : Controller
             Fields = new List<string>() { "Value" }
         };
         
-        await MeterMaintenanceService.UpdateMeterReading(id, meterReadingMutation);
+        await MeterMaintenanceService.UpdateMeterReadingAsync(id, meterReadingMutation);
 
         return RedirectToAction("AllApartments", "Apartment");
     }
