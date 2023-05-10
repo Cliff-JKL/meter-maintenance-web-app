@@ -34,12 +34,4 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.MapControllerRoute(
-    name: "apartments",
-    pattern: "{controller=Apartment}/{action=AllApartments}");
-
-app.MapControllerRoute(
-    name: "meters",
-    pattern: "{controller=Meter}/{action=CheckRequired}/{street}/{house}");
-
 app.Run();

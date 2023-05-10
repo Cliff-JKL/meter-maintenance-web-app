@@ -7,4 +7,8 @@ public class ApartmentWithActualReadingDTO
     
     // TODO only positive number
     public double? Reading { get; set; }
+    
+    public int? ReadingId { get; set; }
+    
+    public int? ApartmentId { get; set; }
 }
